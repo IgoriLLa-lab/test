@@ -11,8 +11,14 @@ public class Bullet {
     private int damage;
     private boolean active;
 
-    public boolean isActive() {
+    public Bullet() {
+        this.position = new Vector2();
+        this.velocity = new Vector2();
+        this.active = false;
+        this.damage = 0;
+    }
 
+    public boolean isActive() {
         return active;
     }
 
@@ -21,15 +27,7 @@ public class Bullet {
     }
 
     public Vector2 getPosition() {
-
         return position;
-    }
-
-    public Bullet() {
-        this.position = new Vector2();
-        this.velocity = new Vector2();
-        this.active = false;
-        this.damage = 0;
     }
 
     public void activate(float x, float y, float vx, float vy, int damage) {

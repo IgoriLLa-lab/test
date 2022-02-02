@@ -4,10 +4,9 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
-import com.mygdx.game.Unit.BotTank;
-import com.mygdx.game.Unit.PlayerTank;
-import com.mygdx.game.Unit.Tank;
+import com.mygdx.game.Units.PlayerTank;
 import com.mygdx.game.Utils.BotEmitter;
 
 public class MyGdxGame extends ApplicationAdapter {
@@ -25,14 +24,16 @@ public class MyGdxGame extends ApplicationAdapter {
 
     @Override
     public void create() {
+        TextureAtlas atlas = new TextureAtlas("game.pack");
         batch = new SpriteBatch();
-        map = new Map();
-        player = new PlayerTank(this);
-        bulletEmitter = new BulletEmitter();
-        botEmitter = new BotEmitter(this);
+        map = new Map(atlas);
+        player = new PlayerTank(this, atlas);
+        bulletEmitter = new BulletEmitter(atlas);
+        botEmitter = new BotEmitter(this, atlas);
     }
 
     @Override
+    //60 раз в секунду стандарт
     public void render() {
         float dt = Gdx.graphics.getDeltaTime();
         update(dt);
